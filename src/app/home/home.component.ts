@@ -14,17 +14,17 @@ export class HomeComponent implements OnInit {
     private electronService: ElectronService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     console.log('HomeComponent INIT');
-    this.electronService.ipcRenderer.on('nfc:read', async (event, data) => {
+    this.electronService.ipcRenderer.on('nfc:read', (event, data) => {
       console.log(data);
     });
-    this.electronService.ipcRenderer.on('nfc:write', async (event, message) => {
+    this.electronService.ipcRenderer.on('nfc:write', (event, message) => {
       console.log(message);
     });
   }
 
-  async write() {
-    await this.electronService.ipcRenderer.send('nfc:write', this.payload);
+  write() {
+    this.electronService.ipcRenderer.send('nfc:write', this.payload);
   }
 }
