@@ -10,8 +10,5 @@
   "private": true,
   "dependencies": {
     "@tockawa/nfc-pcsc": "^0.9.3"
-  },
-  "scripts": {
-    "rebuild": "electron-rebuild"
   }
 }
