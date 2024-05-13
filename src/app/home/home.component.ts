@@ -16,12 +16,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     console.log('HomeComponent INIT');
-    this.electronService.ipcRenderer.on('nfc:read', (event, data) => {
-      console.log(data);
-    });
-    this.electronService.ipcRenderer.on('nfc:write', (event, message) => {
-      console.log(message);
-    });
+    if (this.electronService.isElectron) {
+      this.electronService.ipcRenderer.on('nfc:read', (event, data) => {
+        console.log(data);
+      });
+      this.electronService.ipcRenderer.on('nfc:write', (event, message) => {
+        console.log(message);
+      });
+    }
   }
 
   write() {
