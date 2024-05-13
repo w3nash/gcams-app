@@ -13,8 +13,5 @@
   },
   "scripts": {
     "rebuild": "electron-rebuild"
-  },
-  "devDependencies": {
-    "electron-rebuild": "^3.2.9"
   }
 }
