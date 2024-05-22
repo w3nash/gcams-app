@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // if (this.loginService.isLoggedIn()) {
-    //   this.router.navigate(['/' + this.loginService.getRole()]);
-    //   return;
-    // }
+    if (this.loginService.isLoggedIn()) {
+      this.router.navigate(['/' + this.loginService.getRole()]);
+      return;
+    }
     this.loginForm = this.formBuilder.group({
       email: [
         '',
