@@ -16,12 +16,15 @@ function createWindow(): BrowserWindow {
     y: 0,
     width: size.width,
     height: size.height,
+    icon: __dirname + '/icon.png',
     webPreferences: {
       nodeIntegration: true,
       allowRunningInsecureContent: serve,
       contextIsolation: false,
     },
   });
+
+  win.setMenu(null);
 
   if (serve) {
     const debug = require('electron-debug');

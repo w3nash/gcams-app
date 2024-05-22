@@ -1,6 +1,6 @@
 {
   "name": "gcams-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "GCAMS (Gordon College Attendance Monitoring System) is an attendance monitoring system for Gordon College using the technology of RFID/NFC.",
   "homepage": "https://github.com/w3nash/gcams-app",
   "keywords": [

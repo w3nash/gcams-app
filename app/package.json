@@ -1,11 +1,8 @@
 {
   "name": "gcams-app",
-  "description": "Angular Electron sample",
-  "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
-  },
-  "version": "0.0.1",
+  "description": "GCAMS (Gordon College Attendance Monitoring System) is an attendance monitoring system for Gordon College using the technology of RFID/NFC.",
+  "version": "0.0.2",
+  "author": "GCAMS Team",
   "main": "main.js",
   "private": true,
   "dependencies": {
