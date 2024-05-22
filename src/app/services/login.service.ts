@@ -25,7 +25,7 @@ export class LoginService {
     localStorage.setItem('role', role);
   }
 
-  getToken() {
+  getToken(): string | null {
     const expireAt = localStorage.getItem('expire_at');
     if (expireAt && new Date().getTime() > Number(expireAt)) {
       // Token expired
@@ -35,7 +35,7 @@ export class LoginService {
     return localStorage.getItem('token');
   }
 
-  getRole() {
+  getRole(): string | null {
     return localStorage.getItem('role');
   }
 
@@ -43,7 +43,7 @@ export class LoginService {
     return !!this.getToken();
   }
 
-  logout() {
+  logout(): void {
     // Clear token and expiration time from local storage
     localStorage.removeItem('token');
     localStorage.removeItem('expire_at');
