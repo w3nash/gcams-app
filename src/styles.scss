@@ -1,3 +1,16 @@
+@import url("https://fonts.googleapis.com/css?family=Work+Sans");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Work Sans", Arial, Helvetica, sans-serif;
+  @apply bg-[url("assets/backgrounds/body.jpg")] bg-center bg-no-repeat bg-cover;
+}
+
+h1 {
+  font-family: "Raleway", Arial, Helvetica, sans-serif;
+}

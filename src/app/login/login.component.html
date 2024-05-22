@@ -1,0 +1,112 @@
+<section
+  class="h-screen max-w-full flex justify-center items-center bg-gradient-to-br from-green-200/60 to-indigo-300/60"
+>
+  <div class="flex flex-row">
+    <div
+      class="hidden md:flex bg-[url('assets/backgrounds/card.png')] h-[450px] w-[350px] bg-cover bg-right rounded-2xl md:rounded-tr-none md:rounded-br-none"
+    ></div>
+    <div
+      class="p-6 w-[350px] max-h-[450px] bg-gray-100/40 backdrop-blur-sm rounded-2xl md:rounded-tl-none md:rounded-bl-none flex flex-col justify-center items-center"
+    >
+      <h1 class="text-2xl font-bold text-gray-950">Sign In</h1>
+      <div class="flex flex-row items-center justify-center gap-3 my-2">
+        <img
+          alt=""
+          class="h-10 w-10 p-1 bg-gray-50/60 rounded-full"
+          src="assets/logos/GC.png"
+        />
+        <img
+          alt=""
+          class="h-10 w-10 p-1 bg-gray-50/60 rounded-full"
+          src="assets/logos/CCS.png"
+        /><img
+          alt=""
+          class="h-10 w-10 p-1 bg-gray-50/60 rounded-full"
+          src="assets/logos/GCAMS.png"
+        />
+      </div>
+      <form
+        class="flex flex-col gap-4 w-full"
+        [formGroup]="loginForm"
+        (submit)="onSubmit()"
+      >
+        <div>
+          <label for="email" class="block mb-1 text-sm font-bold text-gray-950"
+            >Email</label
+          >
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            [ngClass]="{
+              'border-red-600/60 outline-red-600/60':
+                (loginForm.controls.email.invalid &&
+                  (loginForm.controls.email.dirty ||
+                    loginForm.controls.email.touched)) ||
+                error
+            }"
+            class="bg-gray-50/60 rounded-md text-gray-950 outline-teal-900 outline-1 border-[1px] border-gray-100/60 block w-full p-2.5"
+            placeholder="userid@gordoncollege.edu.ph"
+          />
+          <p
+            *ngIf="
+              loginForm.controls.email.invalid &&
+              (loginForm.controls.email.dirty ||
+                loginForm.controls.email.touched)
+            "
+            class="text-xs mt-1 text-red-600"
+          >
+            Email is invalid.
+          </p>
+        </div>
+        <div>
+          <label
+            for="password"
+            class="block mb-1 text-sm font-bold text-gray-950"
+            >Password</label
+          >
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            [ngClass]="{
+              'border-red-600/60 outline-red-600/60':
+                (loginForm.controls.password.invalid &&
+                  (loginForm.controls.password.dirty ||
+                    loginForm.controls.password.touched)) ||
+                error
+            }"
+            class="bg-gray-50/60 rounded-md text-gray-950 outline-teal-900 outline-1 border-[1px] border-gray-100/60 block w-full p-2.5"
+            placeholder="••••••••"
+          />
+          <p
+            *ngIf="
+              loginForm.controls.password.invalid &&
+              (loginForm.controls.password.dirty ||
+                loginForm.controls.password.touched)
+            "
+            class="text-xs mt-1 text-red-600"
+          >
+            Password is required.
+          </p>
+        </div>
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid || !loginForm.touched"
+          class="bg-teal-800 font-bold py-2 px-8 text-gray-50 rounded-full hover:bg-teal-900 outline-1 outline-teal-900 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
+          Login
+        </button>
+      </form>
+      <p
+        *ngIf="error"
+        class="text-sm text-center content-end mt-1 text-red-600"
+      >
+        {{ error }}
+      </p>
+      <p class="text-sm text-center content-end mt-3 text-gray-950/80">
+        © 2024 GCAMS Developers and Gordon College CCS. All rights reserved.
+      </p>
+    </div>
+  </div>
+</section>
