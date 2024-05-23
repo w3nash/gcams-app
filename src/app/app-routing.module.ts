@@ -5,6 +5,9 @@ import { LoginComponent } from './login/login.component';
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { StudentEditComponent } from './student/student-edit/student-edit.component';
 import { StudentClassComponent } from './student/student-class/student-class.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { InstructorDashboardComponent } from './instructor/instructor-dashboard/instructor-dashboard.component';
 
 const routes: Routes = [
   {
@@ -18,6 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'student',
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'dashboard',
@@ -28,8 +32,38 @@ const routes: Routes = [
         component: StudentEditComponent,
       },
       {
-        path: 'class/:id',
+        path: 'class/:class_code',
         component: StudentClassComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+    ],
+  },
+  {
+    path: 'admin',
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: 'dashboard',
+        component: AdminDashboardComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+    ],
+  },
+  {
+    path: 'instructor',
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: 'dashboard',
+        component: InstructorDashboardComponent,
       },
       {
         path: '',
