@@ -45,7 +45,7 @@
                     loginForm.controls.email.touched)) ||
                 error
             }"
-            class="bg-gray-50/60 rounded-md text-gray-950 outline-teal-900 outline-1 border-[1px] border-gray-100/60 block w-full p-2.5"
+            class="bg-gray-50/60 rounded-md text-gray-950 outline-indigo-600 outline-1 border-[1px] border-gray-100/60 block w-full p-2.5"
             placeholder="userid@gordoncollege.edu.ph"
           />
           <p
@@ -76,7 +76,7 @@
                     loginForm.controls.password.touched)) ||
                 error
             }"
-            class="bg-gray-50/60 rounded-md text-gray-950 outline-teal-900 outline-1 border-[1px] border-gray-100/60 block w-full p-2.5"
+            class="bg-gray-50/60 rounded-md text-gray-950 outline-indigo-600 outline-1 border-[1px] border-gray-100/60 block w-full p-2.5"
             placeholder="••••••••"
           />
           <p
@@ -93,9 +93,9 @@
         <button
           type="submit"
           [disabled]="loginForm.invalid || !loginForm.touched"
-          class="bg-teal-800 font-bold py-2 px-8 text-gray-50 rounded-full hover:bg-teal-900 outline-1 outline-teal-900 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
+          class="py-2 px-8 button flex justify-center items-center"
         >
-          Login
+          Login <i class="material-icons ml-2">login</i>
         </button>
       </form>
       <p

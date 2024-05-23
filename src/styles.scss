@@ -14,3 +14,22 @@ body {
 h1 {
   font-family: "Raleway", Arial, Helvetica, sans-serif;
 }
+
+@layer components {
+  .button {
+    @apply text-white
+        bg-gradient-to-br
+        from-cyan-700
+        to-indigo-600
+        rounded-full
+        hover:bg-gradient-to-br
+        hover:from-cyan-800
+        hover:to-indigo-700
+        active:bg-gradient-to-br
+        active:from-cyan-900
+        active:to-indigo-800
+        cursor-pointer
+        disabled:cursor-not-allowed
+        font-medium;
+  }
+}

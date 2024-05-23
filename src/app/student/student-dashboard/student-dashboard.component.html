@@ -7,19 +7,25 @@
         >
           <img
             class="object-cover mt-10 h-[110px] w-[110px] md:h-[180px] md:w-[180px] rounded-full bg-center bg-no-repeat border-4 border-white/40 drop-shadow-xl"
-            src="https://gcams.tech/assets/avatar/default.png"
+            [src]="'https://gcams.tech/' + user.avatar"
             alt="avatar"
           />
           <div class="flex flex-col justify-center md:w-full items-center my-2">
-            <h1 class="text-xl font-bold text-gray-800">Johnny Makasalanan</h1>
-            <p class="text-gray-700 font-bold text-md text-center">202211000</p>
-            <p class="text-gray-600 text-center">
-              Bachelor of Science in Computer Science
+            <h1 class="text-xl font-bold text-gray-800">
+              {{ user.firstname }} {{ user.lastname }}
+            </h1>
+            <p class="text-gray-700 font-bold text-md text-center">
+              {{ user.student_id }}
             </p>
-            <p class="text-gray-600 text-center">Year 2 | Block A</p>
+            <p class="text-gray-600 text-center">
+              {{ user.course }}
+            </p>
+            <p class="text-gray-600 text-center">
+              Year {{ user.year }} | Block {{ user.block }}
+            </p>
             <a
               routerLink="/student/edit"
-              class="flex items-center gap-2 m-3 px-6 py-2 text-white bg-gradient-to-br from-cyan-700/80 to-indigo-600/80 rounded-full"
+              class="flex items-center gap-2 m-3 px-6 py-2 button"
             >
               Edit profile
               <i class="material-icons text-md">edit</i>
@@ -42,9 +48,9 @@
               My Classes
             </h1>
             <p
-              class="md:ml-12 md:m-2 px-5 py-3 bg-cyan-700 flex items-center gap-2 text-white font-bold rounded-3xl"
+              class="md:ml-12 md:m-2 px-5 py-3 bg-cyan-700 flex items-center gap-2 text-gray-50 font-bold rounded-3xl"
             >
-              <i class="material-icons">event </i>
+              <i class="material-icons">event</i>
               Class Schedule
             </p>
           </div>
@@ -58,15 +64,30 @@
                 <div
                   class="m-5 p-4 min-h-full w-full rounded-xl bg-[url(assets/backgrounds/card.png)] bg-cover bg-center bg-no-repeat"
                 >
-                  <p class="text-wrap text-white">{{ class.classCode }}</p>
-                  <p class="text-wrap text-white">{{ class.name }}</p>
-                  <p class="text-white">{{ class.time }}</p>
-                  <p class="text-white">{{ class.roomNo }}</p>
+                  <div class="mb-5">
+                    <p class="text-wrap text-gray-50 italic">
+                      {{ class.class_code }}
+                    </p>
+                    <p class="text-gray-50 font-semibold truncate">
+                      {{ class.class_name }}
+                    </p>
+                    <p class="text-gray-50">
+                      {{ class.sex == "M" ? "Mr." : "Ms." }}
+                      {{ class.firstname }} {{ class.lastname }}
+                    </p>
+                    <p class="text-gray-50 font-medium">
+                      {{ class.class_day_schedule }}
+                    </p>
+                    <p class="text-gray-50 text-xs font-medium">
+                      {{ class.class_start_time_schedule }} -
+                      {{ class.class_end_time_schedule }}
+                    </p>
+                  </div>
                   <a
-                    [routerLink]="'/student/class/' + class.classCode"
-                    class="float-end py-2 px-4 rounded-l-full text-white bg-cyan-700 hover:bg-cyan-900"
+                    [routerLink]="'/student/class/' + class.class_code"
+                    class="flex items-center float-end py-2 px-4 button"
                   >
-                    View Class Attendance
+                    View Attendance <i class="material-icons">chevron_right</i>
                   </a>
                 </div>
               </div>
@@ -75,7 +96,7 @@
           <button
             type="button"
             (click)="logout()"
-            class="md:ml-auto flex items-center gap-2 m-3 px-6 py-2 text-white bg-gradient-to-br from-cyan-700/80 to-indigo-600/80 rounded-full"
+            class="md:ml-auto flex items-center gap-2 m-3 px-6 py-2 button"
           >
             <i class="material-icons">exit_to_app</i>
             Log out

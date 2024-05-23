@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { Student } from '../../services/User';
+import { DataService } from '../../services/data.service';
+import { Class } from './Class';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -10,41 +13,37 @@ import { LoginService } from '../../services/login.service';
   templateUrl: './student-dashboard.component.html',
   styleUrl: './student-dashboard.component.scss',
 })
-export class StudentDashboardComponent {
-  constructor(private loginService: LoginService) {}
+export class StudentDashboardComponent implements OnInit {
+  user!: Student;
+  myClasses!: Class[];
+
+  constructor(
+    private loginService: LoginService,
+    private dataService: DataService
+  ) {}
+
+  async ngOnInit(): Promise<void> {
+    try {
+      const student = await this.dataService.getStudent().toPromise();
+      if (student) {
+        this.user = student;
+      } else {
+        console.error('No student data found');
+      }
+    } catch (error) {
+      console.error('Error fetching data', error);
+    }
+
+    try {
+      this.myClasses = await this.dataService
+        .getStudentClasses(this.user.student_id)
+        .toPromise();
+    } catch (error) {
+      console.error('Error fetching data', error);
+    }
+  }
+
   logout() {
     this.loginService.logout();
   }
-  myClasses = [
-    {
-      name: 'Class 1',
-      classCode: 'Code 1',
-      time: '7:00 AM - 10:00 AM',
-      roomNo: '510',
-    },
-    {
-      name: 'Class 2',
-      classCode: 'Code 2',
-      time: '7:00 AM - 10:00 AM',
-      roomNo: '510',
-    },
-    {
-      name: 'Class 3',
-      classCode: 'Code 3',
-      time: '7:00 AM - 10:00 AM',
-      roomNo: '510',
-    },
-    {
-      name: 'Class 4',
-      classCode: 'Code 4',
-      time: '7:00 AM - 10:00 AM',
-      roomNo: '510',
-    },
-    {
-      name: 'Class 5',
-      classCode: 'Code 5',
-      time: '7:00 AM - 10:00 AM',
-      roomNo: '510',
-    },
-  ];
 }
