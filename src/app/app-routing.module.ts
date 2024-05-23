@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components';
 import { LoginComponent } from './login/login.component';
+import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
+import { StudentEditComponent } from './student/student-edit/student-edit.component';
+import { StudentClassComponent } from './student/student-class/student-class.component';
 
 const routes: Routes = [
   {
@@ -12,6 +15,28 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'student',
+    children: [
+      {
+        path: 'dashboard',
+        component: StudentDashboardComponent,
+      },
+      {
+        path: 'edit',
+        component: StudentEditComponent,
+      },
+      {
+        path: 'class/:id',
+        component: StudentClassComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '**',
