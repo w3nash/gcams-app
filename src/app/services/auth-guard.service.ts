@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -7,11 +12,21 @@ import { LoginService } from './login.service';
 })
 export class AuthGuardService implements CanActivate {
   constructor(private loginService: LoginService, private router: Router) {}
-  canActivate(): Promise<boolean | UrlTree> {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Promise<boolean> {
     if (this.loginService.isLoggedIn()) {
       const role = this.loginService.getRole();
-      return this.router.navigate(['/' + role]);
+      const currentRoute = state.url;
+      if (role != 'admin' && currentRoute.includes('admin')) {
+        return this.router.navigate(['/' + role]);
+      } else if (role != 'student' && currentRoute.includes('student')) {
+        return this.router.navigate(['/' + role]);
+      } else if (role != 'instructor' && currentRoute.includes('instructor')) {
+        return this.router.navigate(['/' + role]);
+      }
     }
-    return Promise.resolve(false);
+    return this.router.navigate(['/login']);
   }
 }
