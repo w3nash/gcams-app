@@ -12,21 +12,27 @@ import { LoginService } from './login.service';
 })
 export class AuthGuardService implements CanActivate {
   constructor(private loginService: LoginService, private router: Router) {}
-  canActivate(
+  async canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
     if (this.loginService.isLoggedIn()) {
       const role = this.loginService.getRole();
       const currentRoute = state.url;
-      if (role != 'admin' && currentRoute.includes('admin')) {
-        return this.router.navigate(['/' + role]);
-      } else if (role != 'student' && currentRoute.includes('student')) {
-        return this.router.navigate(['/' + role]);
-      } else if (role != 'instructor' && currentRoute.includes('instructor')) {
-        return this.router.navigate(['/' + role]);
+
+      if (role !== 'admin' && currentRoute.includes('admin')) {
+        await this.router.navigate(['/' + role]);
+        return false;
+      } else if (role !== 'student' && currentRoute.includes('student')) {
+        await this.router.navigate(['/' + role]);
+        return false;
+      } else if (role !== 'instructor' && currentRoute.includes('instructor')) {
+        await this.router.navigate(['/' + role]);
+        return false;
       }
+      return true;
     }
-    return this.router.navigate(['/login']);
+    await this.router.navigate(['/login']);
+    return false;
   }
 }
